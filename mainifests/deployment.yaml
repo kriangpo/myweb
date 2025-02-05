@@ -14,6 +14,13 @@ spec:
     spec:
       containers:
       - name: nginx-container
-        image: kriangpo/myweb:v1
+        image: kriangpo/myweb:v2
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: task-pv-storage
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim
